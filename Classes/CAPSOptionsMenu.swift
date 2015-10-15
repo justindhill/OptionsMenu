@@ -9,17 +9,17 @@
 
 import UIKit
 
-enum AnimationOption {
+public enum AnimationOption {
     case Fade
     case Expand
     case None
 }
 
-class CAPSOptionsMenu: UIView, UIGestureRecognizerDelegate {
+public class CAPSOptionsMenu: UIView, UIGestureRecognizerDelegate {
     private var parentViewController: UIViewController?
     private var targetNavigationController: UINavigationController?
     
-    private var barItem: UIBarButtonItem?
+    public var barItem: UIBarButtonItem?
     private var menuScrollView: UIScrollView?
     
     var isShown: Bool = false
@@ -46,8 +46,9 @@ class CAPSOptionsMenu: UIView, UIGestureRecognizerDelegate {
     var menuActionButtonsTitleColor: UIColor = UIColor.blackColor()
     var menuActionButtonsHiglightedColor: UIColor = UIColor.lightGrayColor()
     var menuCornerRadius: CGFloat = 0.0
-    var menuAnimationOption: AnimationOption = AnimationOption.Expand
-    var menuAnimationDuration: NSTimeInterval = 0.2
+    
+    public var menuAnimationOption: AnimationOption = AnimationOption.Expand
+    public var menuAnimationDuration: NSTimeInterval = 0.2
     
     /// Initialize with parent view controller and bar button image name
     ///
@@ -55,7 +56,7 @@ class CAPSOptionsMenu: UIView, UIGestureRecognizerDelegate {
     ///   - viewController: View controller holding the navigation controller with the navigation bar the menu is to be put on
     ///   - imageName: Name for menu bar button image
     ///   - keepBarButtonOnRightEdge: If `true`, menu bar button will always stay on the rightmost position
-    init(viewController: UIViewController, imageName: String, keepBarButtonAtEdge: Bool) {
+    public init(viewController: UIViewController, imageName: String, keepBarButtonAtEdge: Bool) {
         parentViewController = viewController
         targetNavigationController = viewController.navigationController
         super.init(frame: targetNavigationController!.view.frame)
@@ -72,7 +73,7 @@ class CAPSOptionsMenu: UIView, UIGestureRecognizerDelegate {
     ///   - viewController: View controller holding the navigation controller with the navigation bar the menu is to be put on
     ///   - image: Image for menu bar button
     ///   - keepBarButtonOnRightEdge: If `true`, menu bar button will always stay on the rightmost position
-    init(viewController: UIViewController, image: UIImage, keepBarButtonAtEdge: Bool) {
+    public init(viewController: UIViewController, image: UIImage, keepBarButtonAtEdge: Bool) {
         parentViewController = viewController
         targetNavigationController = viewController.navigationController
         super.init(frame: targetNavigationController!.view.frame)
@@ -89,7 +90,7 @@ class CAPSOptionsMenu: UIView, UIGestureRecognizerDelegate {
     ///   - viewController: View controller holding the navigation controller with the navigation bar the menu is to be put on
     ///   - barButtonSystemItem: Bar button system item for menu bar button
     ///   - keepBarButtonOnRightEdge: If `true`, menu bar button will always stay on the rightmost position
-    init(viewController: UIViewController, barButtonSystemItem: UIBarButtonSystemItem, keepBarButtonAtEdge: Bool) {
+    public init(viewController: UIViewController, barButtonSystemItem: UIBarButtonSystemItem, keepBarButtonAtEdge: Bool) {
         parentViewController = viewController
         targetNavigationController = viewController.navigationController
         super.init(frame: targetNavigationController!.view.frame)
@@ -100,7 +101,7 @@ class CAPSOptionsMenu: UIView, UIGestureRecognizerDelegate {
         setUpOptionsMenu()
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -490,7 +491,7 @@ class CAPSOptionsMenu: UIView, UIGestureRecognizerDelegate {
     }
     
     // MARK: - Action
-    func addAction(action: CAPSOptionsMenuAction) {
+    public func addAction(action: CAPSOptionsMenuAction) {
         actions.append(action)
         addButtonForAction(action)
         
@@ -527,7 +528,7 @@ class CAPSOptionsMenu: UIView, UIGestureRecognizerDelegate {
     }
     
     // MARK: - Gesture Recognizer Delegate
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+    public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
         if touch.view == menuScrollView {
             return false
         }
@@ -536,7 +537,7 @@ class CAPSOptionsMenu: UIView, UIGestureRecognizerDelegate {
     }
     
     // MARK: - Screen Rotation Handling in layout subviews
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         
         if isShown {
