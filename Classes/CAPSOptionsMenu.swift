@@ -123,7 +123,7 @@ public class CAPSOptionsMenu: UIView, UIGestureRecognizerDelegate {
         menuScrollView?.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
         self.addSubview(menuScrollView!)
         
-        let backgroundTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "toggleMenu")
+        let backgroundTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CAPSOptionsMenu.toggleMenu))
         backgroundTapGesture.delegate = self
         self.addGestureRecognizer(backgroundTapGesture)
         
@@ -301,17 +301,17 @@ public class CAPSOptionsMenu: UIView, UIGestureRecognizerDelegate {
     
     // MARK: - Bar Button Item
     private func addBarButtonWithImageName(name: String) {
-        barItem = UIBarButtonItem(image: UIImage(named: name), style: UIBarButtonItemStyle.Plain, target: self, action: "barButtonAction:event:")
+        barItem = UIBarButtonItem(image: UIImage(named: name), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CAPSOptionsMenu.barButtonAction(_:event:)))
         addItemToNavigationBar()
     }
     
     private func addBarButtonWithImage(image: UIImage) {
-        barItem = UIBarButtonItem(image: image, style: UIBarButtonItemStyle.Plain, target: self, action: "barButtonAction:event:")
+        barItem = UIBarButtonItem(image: image, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CAPSOptionsMenu.barButtonAction(_:event:)))
         addItemToNavigationBar()
     }
     
     private func addBarButtonWithSystemItem(systemItem: UIBarButtonSystemItem) {
-        barItem = UIBarButtonItem(barButtonSystemItem: systemItem, target: self, action: "barButtonAction:event:")
+        barItem = UIBarButtonItem(barButtonSystemItem: systemItem, target: self, action: #selector(CAPSOptionsMenu.barButtonAction(_:event:)))
         addItemToNavigationBar()
     }
     
@@ -511,7 +511,7 @@ public class CAPSOptionsMenu: UIView, UIGestureRecognizerDelegate {
         actionButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left;
         actionButton.contentEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
         actionButton.setTitleColor(menuActionButtonsTitleColor, forState: UIControlState.Normal)
-        actionButton.addTarget(self, action: "buttonAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        actionButton.addTarget(self, action: #selector(CAPSOptionsMenu.buttonAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         menuScrollView!.addSubview(actionButton)
         actionButtons.append(actionButton)
     }
